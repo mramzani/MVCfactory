@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Examyou\RestAPI\ExtendedRelations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
@@ -456,7 +457,7 @@ class ApiController extends \Illuminate\Routing\Controller
 							// This will be used to hide this foreign key field
 							// in the processAppends function later
 							$relations[$key]["foreign"] = $q->getQualifiedForeignKeyName();
-						} else if ($q instanceof HasMany) {
+						} else if ($q instanceof HasMany || $q instanceof MorphMany) {
 							$fields[] = $q->getQualifiedForeignKeyName();
 							$relations[$key]["foreign"] = $q->getQualifiedForeignKeyName();
 
